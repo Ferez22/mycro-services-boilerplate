@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
       {
         source: "/api/:path*",
         destination: `${
-          process.env.API_URL || "http://localhost:8000"
+          process.env.API_URL || "http://localhost:5005"
         }/api/:path*`,
       },
     ];

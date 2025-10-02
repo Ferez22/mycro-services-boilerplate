@@ -17,8 +17,8 @@ ENV PYTHONUNBUFFERED=1
 COPY . .
 # Install all dependencies (main + dev)
 RUN poetry install
-EXPOSE 8000
-CMD ["poetry", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+EXPOSE 5005
+CMD ["poetry", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "5005", "--reload"]
 
 # Production build stage
 FROM base as builder
@@ -49,5 +49,5 @@ COPY . .
 RUN adduser --system appuser
 USER appuser
 
-EXPOSE 8000
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+EXPOSE 5005
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "5005"]
