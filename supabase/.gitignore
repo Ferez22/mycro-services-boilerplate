@@ -9,6 +9,7 @@
 
 # Database data and volumes - exclude entire volumes directory
 volumes/
+volumes/db/
 
 # Logs
 *.log
