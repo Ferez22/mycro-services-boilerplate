@@ -16,3 +16,7 @@ You can of course start the frontend directly with `npm run dev`or `yarn dev`
   `docker build --target production -t ze-frontend-prod .`
 - Then run the container
   `docker run -p 3000:3000 ze-frontend-prod`
+
+### Frontend Tools
+
+- As a Component library we have schad/cn and magic UI.

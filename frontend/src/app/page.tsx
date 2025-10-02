@@ -1,9 +1,11 @@
+import { SpinningText } from "@/components/ui/spinning-text";
 import Zero from "@/components/zero";
 import Image from "next/image";
 
 export default function Home() {
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+      <SpinningText>zis iz ze best frontend</SpinningText>
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
           <li className="mb-2 tracking-[-.01em]">
@@ -13,10 +15,7 @@ export default function Home() {
             </code>
             .
           </li>
-          <li className="tracking-[-.01em]">
-            You can read the docs to understand this boiler plate and get
-            started.
-          </li>
+          <li className="tracking-[-.01em]">Read the docs to get started.</li>
         </ol>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
