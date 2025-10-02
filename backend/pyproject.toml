@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "backend"
+version = "0.1.0"
+description = "Ze Backend API"
+authors = ["Ze <ze@ze.com>"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.111"
+uvicorn = "^0.30"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
