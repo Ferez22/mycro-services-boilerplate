@@ -1,0 +1,71 @@
+# Supabase .gitignore
+
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+
+# Database data and volumes
+volumes/db/data/
+volumes/storage/
+volumes/logs/
+
+# Generated files
+volumes/api/kong.yml
+volumes/db/_supabase.sql
+volumes/db/jwt.sql
+volumes/db/logs.sql
+volumes/db/pooler.sql
+volumes/db/realtime.sql
+volumes/db/roles.sql
+volumes/db/webhooks.sql
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node modules (if any)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python cache (if any)
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Docker
+.dockerignore
+
+# Backup files
+*.bak
+*.backup
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Supabase CLI generated files
+supabase/.branches
+supabase/.temp
