@@ -17,3 +17,7 @@ Welcome to **ze-mycroservices-boilerplate**.
 
    - for a dev environment using `docker compose up -`build`
    - for a prod environment using: `docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d`
+
+### Supabase
+
+Follow the [official documentation](https://supabase.com/docs/guides/self-hosting/docker#before-you-begin) of supabase on how to self host
