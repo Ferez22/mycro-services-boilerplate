@@ -1,0 +1,14 @@
+services:
+  backend:
+    ports:
+      - "8000:8000" # expose for debugging
+    volumes:
+      - ./backend:/app # live code mounting
+
+  frontend:
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    environment:
+      - API_URL=http://backend:8000
