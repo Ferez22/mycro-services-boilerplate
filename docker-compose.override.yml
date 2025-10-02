@@ -1,7 +1,7 @@
 services:
   backend:
     ports:
-      - "5000:5000" # expose for debugging
+      - "5005:5005" # expose for debugging
     volumes:
       - ./backend:/app # live code mounting
 
@@ -10,5 +10,7 @@ services:
       - "3000:3000"
     volumes:
       - ./frontend:/app
+      - /app/node_modules # Preserve container's node_modules
+      - /app/.next # Preserve build cache
     environment:
-      - API_URL=http://backend:5000
+      - API_URL=http://backend:5005
