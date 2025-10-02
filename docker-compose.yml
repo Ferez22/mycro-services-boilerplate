@@ -4,13 +4,14 @@ services:
   backend:
     build: ./backend
     networks:
-      - app-net
+      - ze-net
 
   frontend:
     build: ./frontend
     networks:
-      - app-net
+      - ze-net
 
 networks:
-  app-net:
+  ze-net:
     driver: bridge
+    external: true
