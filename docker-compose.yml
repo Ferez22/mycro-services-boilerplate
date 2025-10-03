@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   backend:
     build: ./backend
@@ -10,6 +8,21 @@ services:
     build: ./frontend
     networks:
       - app-net
+
+  postgres-db:
+    image: postgres:latest
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgresadmin
+      - POSTGRES_PASSWORD=postgresadmin
+    networks:
+      - app-net
+
+volumes:
+  postgres_data:
 
 networks:
   app-net:

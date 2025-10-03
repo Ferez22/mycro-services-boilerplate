@@ -18,6 +18,12 @@ Welcome to **ze-mycroservices-boilerplate**.
    - for a dev environment using `docker compose up -`build`
    - for a prod environment using: `docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d`
 
+### PostgreSQL
+
+#### Docker
+
+you can connect to your postgreSQL and run SQL queries directly. Use this: `docker exec -it mycro-services-boilerplate-postgres-db-1 psql -U postgresadmin`. It is recommended that you use variables for the user and password, and obviously chose a stronger password.
+
 ### Supabase
 
 Follow the [official documentation](https://supabase.com/docs/guides/self-hosting/docker#before-you-begin) of supabase on how to self host

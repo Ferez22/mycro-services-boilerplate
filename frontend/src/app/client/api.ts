@@ -6,7 +6,7 @@ const getApiBaseUrl = () => {
   }
 
   // In production, use the environment variable or default
-  return process.env.NEXT_PUBLIC_API_URL || "http://localhost:5005/api";
+  return process.env.NEXT_PUBLIC_API_URL || "http://backend:5005/api";
 };
 
 export const testBackend = async () => {
