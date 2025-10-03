@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
+import { SpinningText } from "@/components/ui/spinning-text";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -27,6 +29,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <nav className="w-full h-[50px] flex items-center justify-center px-8 z-50">
+          <div className=" px-8 mt-32 rounded">
+            <SpinningText>zis iz ze best frontend</SpinningText>
+          </div>
+        </nav>
         {children}
       </body>
     </html>
