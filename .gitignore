@@ -2,3 +2,4 @@
 
 # Supabase volumes - exclude database data and other volumes
 supabase/volumes/
+.DS_Store
