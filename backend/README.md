@@ -28,3 +28,8 @@ You can start the backend right away with:
   • Small, clean image.
   • No reload, no dev deps.
   • Non-root user for security.
+
+### PostgreSQL
+
+The `database.py` file is the backbone for your PostgreSQL database.
+You can then go to the folder `/db`and add the classes and tables and logic for your database.
