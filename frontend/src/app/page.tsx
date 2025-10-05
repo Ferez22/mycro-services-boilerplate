@@ -4,8 +4,8 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 w-full">
-      <main className="flex gap-[32px] row-start-2 items-center sm:items-start w-full">
+    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-center min-h-screen p-8 pb-20 gap-16 sm:p-20 max-w-[800px] mx-auto">
+      <main className="gap-[32px] row-start-2 items-center sm:items-start w-full">
         <div className="flex flex-col gap-[32px] flex-1">
           <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
             <li className="mb-2 tracking-[-.01em]">
@@ -31,7 +31,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex-1">
+        <div className="mt-12">
           <TodoList />
         </div>
       </main>

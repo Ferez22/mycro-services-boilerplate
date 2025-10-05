@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from datetime import datetime
 from ..database import Base
+from sqlalchemy.orm import Session
 
 # Create a class for the player table, add fields
 class Player(Base):
@@ -10,3 +11,10 @@ class Player(Base):
     name = Column(String(100), nullable=False)
     sport = Column(String(100), nullable=False)
     player_id = Column(Integer(), ForeignKey('players.id'))
+
+def create_player(db: Session, player: Player):
+    player = Player(name=player.name, sport=player.sport)
+    db.add(player)
+    db.commit()
+    db.refresh(player)
+    return player
