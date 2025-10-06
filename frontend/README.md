@@ -26,3 +26,7 @@ You can of course start the frontend directly with `npm run dev`or `yarn dev`
 ### Frontend Tools
 
 - As a Component library we have schad/cn and magic UI.
+
+### Frontend Logic
+
+The frontend is connected to the backend. There is a players hook that takes care of all logic of getting players, creating a new player and deleting a player. This is following a Best practice way of handling such cases.
