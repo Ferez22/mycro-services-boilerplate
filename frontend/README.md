@@ -3,6 +3,8 @@
 This frontend is created using nextJs. Notice the Dockerfile at the root folder. It is a multi stage Dockerfile that build a dev and a prod version of the app.
 You can of course start the frontend directly with `npm run dev`or `yarn dev`
 
+- **import** this `global-config.ts`ile is the backbone of your frontend app. You setup here all the important things like routes, stripe config, auth config etc .. It iis still and always under construciton and maintenance. It must be typesecure so create/edit the ConfigType
+
 #### Dev
 
 ##### way 1
