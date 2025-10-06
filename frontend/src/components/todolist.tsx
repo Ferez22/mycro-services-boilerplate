@@ -16,54 +16,22 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ArrowUpIcon } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 import { ZeButton } from "./button";
-import {
-  getPlayers,
-  createPlayer,
-  deletePlayer as deletePlayerAPI,
-  Player,
-  PlayerResponse,
-} from "@/app/client/api";
+import { usePlayers } from "@/hooks/players";
 
 const TodoList = () => {
-  const [playerName, setPlayerName] = useState("");
-  const [playerSport, setPlayerSport] = useState("");
-  const [players, setPlayers] = useState<PlayerResponse[]>([]);
-  const [error, setError] = useState<string>("");
-
-  const fetchPlayers = async () => {
-    const players = await getPlayers();
-    setPlayers(players as PlayerResponse[]);
-  };
-
-  const addPlayer = async () => {
-    console.log({ name: playerName, sport: playerSport });
-    const player = await createPlayer({ name: playerName, sport: playerSport });
-    if (player.error) {
-      setError(player.error);
-    } else {
-      setPlayerName("");
-      setPlayerSport("");
-    }
-
-    fetchPlayers();
-  };
-
-  const deletePlayer = async (player_id: number) => {
-    await deletePlayerAPI(player_id);
-    setPlayers(players.filter((player) => player.id !== player_id));
-    fetchPlayers();
-  };
-
-  React.useEffect(() => {
-    fetchPlayers();
-  }, [setPlayers]);
-
-  const resetInput = () => {
-    setPlayerName("");
-    setPlayerSport("");
-  };
+  const {
+    players,
+    error,
+    playerName,
+    playerSport,
+    setPlayerName,
+    setPlayerSport,
+    addPlayer,
+    deletePlayer,
+    resetInput,
+  } = usePlayers();
 
   const sports = [
     { name: "Tennis", value: "tennis" },
