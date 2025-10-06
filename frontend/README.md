@@ -5,10 +5,16 @@ You can of course start the frontend directly with `npm run dev`or `yarn dev`
 
 #### Dev
 
+##### way 1
+
 - First, build your docker image:
   `docker build --target production -t ze-frontend-dev .`
 - Then run the container
   `docker run -p 3000:3000 ze-frontend-dev`
+
+##### way 2 (RECOMMENDED)
+
+- Run `docker compose up --build`outside the frontend folder, this way frontend and backend are up and when you make changes, they both automatically refresh
 
 #### Production
 

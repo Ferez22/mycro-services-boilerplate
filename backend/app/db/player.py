@@ -18,3 +18,9 @@ def create_player(db: Session, player: Player):
     db.commit()
     db.refresh(player)
     return player
+
+def delete_player(db: Session, player_id: int):
+    player = db.query(Player).filter(Player.id == player_id).first()
+    db.delete(player)
+    db.commit()
+    return player

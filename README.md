@@ -14,8 +14,7 @@ Welcome to **ze-mycroservices-boilerplate**.
 
 1. You can now have two terminals open, then start the frontend and the backend separately (see the READMEs in frontend and backend folder)
 2. or you can start everything in dev and prod environments using docker
-
-   - for a dev environment using `docker compose up -`build`
+   - **(recommended for dev)** for a dev environment using `docker compose up --build` (changes refresh automatically)
    - for a prod environment using: `docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d`
 
 ### PostgreSQL
