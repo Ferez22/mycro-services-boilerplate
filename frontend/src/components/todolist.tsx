@@ -50,7 +50,11 @@ const TodoList = () => {
         <InputGroupAddon align="block-end">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <InputGroupButton variant="ghost">Sport</InputGroupButton>
+              <InputGroupButton variant="ghost">
+                {playerSport
+                  ? sports.find((s) => s.value === playerSport)?.name || "Sport"
+                  : "Sport"}
+              </InputGroupButton>
             </DropdownMenuTrigger>
             <DropdownMenuContent
               side="top"
@@ -61,8 +65,14 @@ const TodoList = () => {
                 <DropdownMenuItem
                   key={sport.value}
                   onClick={() => setPlayerSport(sport.value)}
+                  className={playerSport === sport.value ? "bg-accent" : ""}
                 >
-                  {sport.name}
+                  <span className="flex items-center justify-between w-full">
+                    {sport.name}
+                    {playerSport === sport.value && (
+                      <span className="ml-2 text-green-600">✓</span>
+                    )}
+                  </span>
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
