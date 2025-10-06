@@ -36,6 +36,7 @@ CMD ["npm", "start"]
 FROM base as dev
 ENV NODE_ENV=development
 
+# Install dependencies
 RUN npm install
 COPY . .
 

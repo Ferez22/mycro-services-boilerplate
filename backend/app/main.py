@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 from .database import Base, engine, get_db
-from .router.api import router
+from app.router import api, player
 from .db.player import Player
 
 # Create tables (later you can switch to Alembic migrations)
@@ -32,4 +32,5 @@ def root(db: Session = Depends(get_db)):
         }
     }
 
-app.include_router(router)
+app.include_router(api.router)
+app.include_router(player.router)
