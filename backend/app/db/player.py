@@ -13,14 +13,16 @@ class Player(Base):
     player_id = Column(Integer(), ForeignKey('players.id'))
 
 def create_player(db: Session, player: Player):
-    player = Player(name=player.name, sport=player.sport)
-    db.add(player)
+    new_player = Player(name=player.name, sport=player.sport, player_id=None)
+    db.add(new_player)
     db.commit()
-    db.refresh(player)
-    return player
+    db.refresh(new_player)
+    return new_player
 
 def delete_player(db: Session, player_id: int):
     player = db.query(Player).filter(Player.id == player_id).first()
+    if not player:
+        return None
     db.delete(player)
     db.commit()
     return player

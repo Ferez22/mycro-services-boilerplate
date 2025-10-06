@@ -66,6 +66,7 @@ export const deletePlayer = async (player_id: number) => {
     const response = await fetch(`/player/delete/${player_id}`, {
       method: "DELETE",
     });
+
     if (!response.ok) {
       const errorBody = await response.text();
       throw new Error(

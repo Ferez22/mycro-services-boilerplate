@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from ..db.player import Player, create_player, delete_player
 from ..database import get_db
@@ -24,5 +24,7 @@ def get_players_endpoint(db: Session = Depends(get_db)):
 
 @router.delete("/delete/{player_id}", response_model=PlayerResponse)
 def delete_player_endpoint(player_id: int, db: Session = Depends(get_db)):
-    delete_player(db, player_id)
-    return {"message": "Player deleted successfully"}
+    deleted_player = delete_player(db, player_id)
+    if not deleted_player:
+        raise HTTPException(status_code=404, detail="Player not found")
+    return deleted_player
