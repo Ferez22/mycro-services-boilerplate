@@ -26,6 +26,7 @@ const TodoList = () => {
     error,
     playerName,
     playerSport,
+    isLoading,
     setPlayerName,
     setPlayerSport,
     addPlayer,
@@ -87,7 +88,7 @@ const TodoList = () => {
             variant="default"
             className="rounded-full hover:cursor-pointer"
             size="icon-xs"
-            disabled={!playerName || !playerSport}
+            disabled={!playerName || !playerSport || isLoading}
             onClick={addPlayer}
           >
             <ArrowUpIcon />
@@ -97,13 +98,18 @@ const TodoList = () => {
       </InputGroup>
       <div className="flex flex-wrap gap-4">
         {error && <p className="text-red-500">{error}</p>}
-        {players.map((player) => (
-          <ZeButton
-            key={player.id}
-            text={player.name}
-            onClick={() => deletePlayer(player.id)}
-          />
-        ))}
+        {isLoading && <p className="text-gray-500">Loading players...</p>}
+        {!isLoading && players.length === 0 && !error && (
+          <p className="text-gray-400">No players yet. Add one above!</p>
+        )}
+        {!isLoading &&
+          players.map((player) => (
+            <ZeButton
+              key={player.id}
+              text={player.name}
+              onClick={() => deletePlayer(player.id)}
+            />
+          ))}
       </div>
     </div>
   );
