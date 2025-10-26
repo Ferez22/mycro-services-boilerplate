@@ -57,9 +57,13 @@ FROM node:20-alpine AS production
 
 WORKDIR /app
 
+# Accept runtime API URL (can be overridden by docker-compose)
+ARG API_URL=http://backend:5005
+
 # Set production environment
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV API_URL=$API_URL
 
 # Create system group and user
 RUN addgroup --system --gid 1001 nodejs && \
