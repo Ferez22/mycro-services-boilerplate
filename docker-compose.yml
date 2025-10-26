@@ -1,4 +1,17 @@
 services:
+  postgres-db:
+    image: postgres:15
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    environment:
+      - POSTGRES_USER=postgresadmin
+      - POSTGRES_PASSWORD=postgresadmin
+      - POSTGRES_DB=postgres
+    networks:
+      - app-net
+
   backend:
     build: ./backend
     networks:
@@ -10,18 +23,6 @@ services:
       target: production
     ports:
       - "3000:3000"
-    networks:
-      - app-net
-
-  postgres-db:
-    image: postgres:latest
-    ports:
-      - "5433:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=postgresadmin
-      - POSTGRES_PASSWORD=postgresadmin
     networks:
       - app-net
 
