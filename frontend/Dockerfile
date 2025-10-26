@@ -8,7 +8,20 @@ EXPOSE 3000
 # Builder (builds Next.js)
 FROM base as builder
 RUN npm install
-COPY . .
+
+# Copy source files and config files
+COPY src ./src
+COPY public ./public
+COPY next.config.ts ./
+COPY tsconfig.json ./
+COPY components.json ./
+COPY postcss.config.mjs ./
+COPY eslint.config.mjs ./
+
+# Clean up any existing build artifacts or problematic directories
+RUN rm -rf .next next-env.d.ts
+
+# Run the build - this will generate next-env.d.ts correctly
 RUN npm run build
 
 
