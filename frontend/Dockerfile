@@ -27,17 +27,22 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
+# Accept build arguments
+ARG API_URL=http://backend:5005
+
 # Copy dependencies from deps stage
 COPY --from=deps /app/node_modules ./node_modules
 
 # Copy all source files
 COPY . .
 
-# Disable telemetry during build
+# Set build-time environment variables
+# These are used by next.config.ts during build
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV API_URL=$API_URL
 
 # Build the application
-RUN \
+RUN echo "Building with API_URL=${API_URL}" && \
   if [ -f yarn.lock ]; then yarn build; \
   elif [ -f package-lock.json ]; then npm run build; \
   elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm build; \
@@ -91,11 +96,15 @@ FROM node:20-alpine AS dev
 
 WORKDIR /app
 
+# Accept build arguments
+ARG API_URL=http://localhost:5005
+
 # Install dependencies for development
 RUN apk add --no-cache libc6-compat git
 
 ENV NODE_ENV=development
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV API_URL=$API_URL
 
 # Copy package files and install dependencies
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
@@ -116,7 +125,7 @@ ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
 # Start development server
-CMD \
+CMD echo "[Dev] API_URL=${API_URL}" && \
   if [ -f yarn.lock ]; then yarn dev; \
   elif [ -f package-lock.json ]; then npm run dev; \
   elif [ -f pnpm-lock.yaml ]; then corepack enable pnpm && pnpm dev; \
