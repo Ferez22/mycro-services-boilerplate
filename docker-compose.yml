@@ -13,7 +13,15 @@ services:
       - app-net
 
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      target: dev
+    environment:
+      - DB_HOST=postgres-db
+      - DB_PORT=5432
+      - DB_USER=postgresadmin
+      - DB_PASSWORD=postgresadmin
+      - DB_NAME=postgres
     networks:
       - app-net
     depends_on:
@@ -23,6 +31,9 @@ services:
     build:
       context: ./frontend
       target: dev
+    environment:
+      - API_URL=http://backend:5005
+      - NEXT_PUBLIC_API_URL=http://backend:5005
     ports:
       - "3000:3000"
     networks:

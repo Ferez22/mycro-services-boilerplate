@@ -1,16 +1,11 @@
 services:
   backend:
-    environment:
-      - DB_HOST=postgres-db
-      - DB_PORT=5432
     ports:
       - "5005:5005" # expose for debugging
     volumes:
       - ./backend:/app # live code mounting
 
   frontend:
-    ports:
-      - "3000:3000"
     volumes:
       - ./frontend/src:/app/src
       - ./frontend/public:/app/public
@@ -25,5 +20,3 @@ services:
       - ./frontend/next-env.d.ts:/app/next-env.d.ts
       - /app/node_modules # Preserve container's node_modules
       - /app/.next # Preserve build cache
-    environment:
-      - API_URL=http://backend:5005

@@ -1,10 +1,18 @@
 services:
   backend:
+    build:
+      context: ./backend
+      target: prod
     ports:
       - "5005:5005"
     environment:
       - ENV=production
       - API_URL=http://backend:5005
+      - DB_HOST=postgres-db
+      - DB_PORT=5432
+      - DB_USER=postgresadmin
+      - DB_PASSWORD=postgresadmin
+      - DB_NAME=postgres
 
   frontend:
     build:
@@ -15,3 +23,4 @@ services:
     environment:
       - ENV=production
       - API_URL=http://backend:5005
+      - NEXT_PUBLIC_API_URL=http://backend:5005

@@ -3,7 +3,14 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: "standalone",
   async rewrites() {
-    const backendUrl = process.env.NEXT_PUBLIC_API_URL || "http://backend:5005";
+    // Use API_URL for server-side rewrites (works in Docker)
+    // Falls back to localhost for local development
+    const backendUrl =
+      process.env.API_URL ||
+      process.env.NEXT_PUBLIC_API_URL ||
+      "http://localhost:5005";
+
+    console.log("Backend URL for rewrites:", backendUrl);
 
     return [
       // API routes
