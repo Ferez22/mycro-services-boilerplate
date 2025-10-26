@@ -16,6 +16,8 @@ services:
     build: ./backend
     networks:
       - app-net
+    depends_on:
+      - postgres-db
 
   frontend:
     build:
@@ -23,6 +25,17 @@ services:
       target: production
     ports:
       - "3000:3000"
+    networks:
+      - app-net
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=eyJhIjoiMmNlMzI0MmE5MjlmYzY3YjExOWY3MjkyNTE3ZDZlZjMiLCJ0IjoiNGY5NDc2M2UtODhmZi00NzEzLWIxNWYtZDRmM2RjNzViNTM1IiwicyI6Ik9HVmxPVGxsT1RRdE9EbG1PQzAwTW1FekxUZzJZamN0WlRZNE5HTTNNalZoWkRWaiJ9
+    depends_on:
+      - frontend
     networks:
       - app-net
 
