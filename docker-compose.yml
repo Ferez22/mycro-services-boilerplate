@@ -5,7 +5,11 @@ services:
       - app-net
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      target: production
+    ports:
+      - "3000:3000"
     networks:
       - app-net
 

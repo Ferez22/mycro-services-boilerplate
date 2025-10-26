@@ -17,19 +17,18 @@ FROM node:18-slim as production
 WORKDIR /app
 ENV NODE_ENV=production
 
-# Install only prod deps
-COPY package*.json ./
-RUN npm ci --only=production
-
-# Copy build artifacts
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
+# Copy standalone output from builder
+COPY --from=builder /app/.next/standalone ./
 
 # Create non-root user
 RUN addgroup --system nodejs && adduser --system nextjs
 USER nextjs
 
-CMD ["npm", "start"]
+EXPOSE 3000
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+
+CMD ["node", "server.js"]
 
 
 # Development
