@@ -33,7 +33,7 @@ services:
     container_name: cloudflared
     command: tunnel run
     environment:
-      - TUNNEL_TOKEN=eyJhIjoiMmNlMzI0MmE5MjlmYzY3YjExOWY3MjkyNTE3ZDZlZjMiLCJ0IjoiNGY5NDc2M2UtODhmZi00NzEzLWIxNWYtZDRmM2RjNzViNTM1IiwicyI6Ik9HVmxPVGxsT1RRdE9EbG1PQzAwTW1FekxUZzJZamN0WlRZNE5HTTNNalZoWkRWaiJ9
+      - TUNNEL_TOKEN=$CF_TUNNEL_TOKEN
     depends_on:
       - frontend
     networks:
