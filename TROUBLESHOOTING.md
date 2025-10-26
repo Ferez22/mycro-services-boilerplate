@@ -258,6 +258,54 @@ docker compose -f docker-compose.yml -f docker-compose.prod.yml up
 - No source code mounting
 - Runs as non-root user
 
+### "Frontend can't connect to backend with Cloudflare Tunnel"
+
+**Problem**: App is accessible via Cloudflare (e.g., `app.ferez.cloud`) but API calls fail.
+
+**Symptoms**:
+- Browser console shows errors connecting to `/api/*` or `/player/*`
+- Works locally but not via Cloudflare tunnel
+- Backend shows "connection refused" in logs
+
+**Root Cause**: Frontend was configured with `NEXT_PUBLIC_API_URL=http://backend:5005`, which the browser tries to access directly.
+
+**Solution**: Use server-side rewrites (already configured):
+
+1. **Remove client-side backend URL**:
+   ```yaml
+   # docker-compose.yml and docker-compose.prod.yml
+   frontend:
+     environment:
+       - API_URL=http://backend:5005  # Server-side only
+       # DO NOT set NEXT_PUBLIC_API_URL
+   ```
+
+2. **Frontend already uses relative URLs** (no changes needed):
+   ```typescript
+   // ✅ Good - uses server-side rewrites
+   fetch('/api/ping')
+   fetch('/player/create', { ... })
+   
+   // ❌ Bad - would try to connect from browser
+   fetch('http://backend:5005/api/ping')
+   ```
+
+3. **Rebuild on server**:
+   ```bash
+   docker compose down
+   docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d
+   ```
+
+4. **Verify rewrites are working**:
+   ```bash
+   docker compose logs frontend | grep "Backend URL"
+   # Should show: Backend URL for server-side rewrites: http://backend:5005
+   ```
+
+**How it works**: Browser → Cloudflare → Next.js → rewrites `/api/*` → `backend:5005` internally.
+
+See [CLOUDFLARE_DEPLOYMENT.md](./CLOUDFLARE_DEPLOYMENT.md) for complete guide.
+
 ## Still Having Issues?
 
 1. **Check Docker version**: `docker --version` (needs 20.10+)

@@ -3,17 +3,16 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: "standalone",
   async rewrites() {
-    // Use API_URL for server-side rewrites (works in Docker)
-    // Falls back to localhost for local development
-    const backendUrl =
-      process.env.API_URL ||
-      process.env.NEXT_PUBLIC_API_URL ||
-      "http://localhost:5005";
+    // Use API_URL for server-side rewrites
+    // In Docker: http://backend:5005 (internal network)
+    // In local dev: http://localhost:5005
+    const backendUrl = process.env.API_URL || "http://localhost:5005";
 
-    console.log("Backend URL for rewrites:", backendUrl);
+    console.log("[Next.js] Backend URL for server-side rewrites:", backendUrl);
 
     return [
-      // API routes
+      // API routes - these are server-side proxies
+      // Browser requests /api/* → Next.js server → backend
       {
         source: "/api/:path*",
         destination: `${backendUrl}/api/:path*`,

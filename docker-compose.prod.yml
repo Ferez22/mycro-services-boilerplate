@@ -21,6 +21,5 @@ services:
     ports:
       - "80:3000"
     environment:
-      - ENV=production
+      - NODE_ENV=production
       - API_URL=http://backend:5005
-      - NEXT_PUBLIC_API_URL=http://backend:5005

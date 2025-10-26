@@ -154,6 +154,7 @@ docker compose logs -f
 ## 📚 Documentation
 
 - [Frontend Docker Setup](./frontend/DOCKER.md) - Detailed Next.js Docker configuration
+- [Cloudflare Deployment Guide](./CLOUDFLARE_DEPLOYMENT.md) - Deploy with Cloudflare Tunnels
 - [Troubleshooting Guide](./TROUBLESHOOTING.md) - Debug common issues
 
 ## 🧹 Cleanup
@@ -171,25 +172,42 @@ docker system prune -a --volumes
 
 ## 🚢 Deployment
 
-### Using Cloudflare Tunnel
+### Using Cloudflare Tunnel (Recommended)
 
-The project includes Cloudflare Tunnel configuration for easy public access:
+The project includes built-in Cloudflare Tunnel support for secure public access without exposing ports or managing SSL certificates.
 
+**Quick Start:**
 ```bash
 # Set your tunnel token
 export CF_TUNNEL_TOKEN=your-token-here
 
-# Start with tunnel
-docker compose up -d
+# Deploy in production mode
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 ```
 
+**📖 Full Guide**: See [CLOUDFLARE_DEPLOYMENT.md](./CLOUDFLARE_DEPLOYMENT.md) for:
+- Complete setup instructions
+- Cloudflare tunnel configuration
+- Security best practices
+- Troubleshooting common issues
+- How frontend-backend communication works
+
+**Key Features:**
+- ✅ Automatic SSL/TLS certificates
+- ✅ No port forwarding needed
+- ✅ Backend stays internal (not exposed)
+- ✅ DDoS protection via Cloudflare
+- ✅ Works behind NAT/firewalls
+
 ### Traditional Deployment
+
+For deploying without Cloudflare:
 
 1. Build production images
 2. Set environment variables
 3. Use `docker-compose.prod.yml` for production configuration
 4. Set up reverse proxy (nginx, traefik, etc.)
-5. Configure SSL/TLS certificates
+5. Configure SSL/TLS certificates with Let's Encrypt
 
 ## 🤝 Contributing
 
