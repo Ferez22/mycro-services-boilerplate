@@ -1,8 +1,9 @@
 export const CONFIG = {
   appName: "ze-frontend",
-  appDescription: "frontend of the mycroservices boilerplate",
+  appDescription:
+    "A boilerplate/template frontend with many ready to use features and pages like a dashboard, a chat interface and more!",
   appAuthor: "ferez",
   appAuthorEmail: "ferez@ferez.cloud",
   appAuthorUrl: "https://ferez.cloud",
-  docsUrl: "https://www.docs.ferez.cloud",
+  docsUrl: "docs.ferez.cloud",
 };

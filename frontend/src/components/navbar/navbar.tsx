@@ -43,7 +43,7 @@ const NavBar = () => {
 
   return (
     <nav
-      className={`group relative flex flex-col w-full ${getNavShadow()} ${
+      className={`group relative flex flex-col w-full bg-background ${getNavShadow()} ${
         isExpanded ? "" : "rounded-b-4xl"
       }`}
       onMouseLeave={handleMouseLeave}
