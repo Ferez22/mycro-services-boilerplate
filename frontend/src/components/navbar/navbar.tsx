@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ShinyButton } from "@/components/ui/shiny-button";
 import { ThemeSwitcher } from "../theme-switcher";
+import { useTheme } from "@/components/context/theme-provider";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "../ui/button";
@@ -10,6 +11,7 @@ import { ArrowDown } from "lucide-react";
 
 const NavBar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { theme } = useTheme();
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
@@ -19,9 +21,28 @@ const NavBar = () => {
     setIsExpanded(false);
   };
 
+  // Theme-aware shadow classes
+  const getNavShadow = () => {
+    if (theme === "dark") {
+      return "shadow-[0_2px_8px_rgba(0,0,0,0.3),0_0_0_1px_rgba(255,255,255,0.05)]";
+    } else if (theme === "purple") {
+      return "shadow-[0_2px_8px_rgba(0,0,0,0.15),0_0_12px_rgba(139,92,246,0.2)]";
+    }
+    return "shadow-sm";
+  };
+
+  const getExpandedShadow = () => {
+    if (theme === "dark") {
+      return "shadow-[0_8px_24px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.08)]";
+    } else if (theme === "purple") {
+      return "shadow-[0_8px_24px_rgba(0,0,0,0.2),0_0_20px_rgba(139,92,246,0.3)]";
+    }
+    return "shadow-xl";
+  };
+
   return (
     <nav
-      className={`group relative flex flex-col shadow-sm ${
+      className={`group relative flex flex-col ${getNavShadow()} ${
         isExpanded ? "" : "rounded-b-4xl"
       }`}
       onMouseLeave={handleMouseLeave}
@@ -32,7 +53,7 @@ const NavBar = () => {
         }`}
       >
         <div className="flex items-center gap-2">
-          <Link href="/" className="border-3 border-slate-500 rounded-full p-2">
+          <Link href="/" className=" ">
             <Image src="/ze-logo.png" alt="Logo" width={24} height={24} />
           </Link>
         </div>
@@ -64,7 +85,9 @@ const NavBar = () => {
         }`}
         style={{ pointerEvents: isExpanded ? "auto" : "none" }}
       >
-        <div className="p-4 border-t border-border bg-background shadow-lg rounded-b-4xl">
+        <div
+          className={`p-4 border-t border-border bg-background ${getExpandedShadow()} rounded-b-4xl`}
+        >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {/* Add your expandable content here */}
             <div className="p-4 rounded-lg bg-muted/50">
