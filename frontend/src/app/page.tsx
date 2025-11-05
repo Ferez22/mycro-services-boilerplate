@@ -1,72 +1,81 @@
 import Hero from "@/components/landing-page/hero";
 import Image from "next/image";
-import { CONFIG } from "@/config-global";
+import Footer from "@/components/landing-page/footer";
+import { BlurFade } from "@/components/ui/blur-fade";
+import { dataSlider } from "@/app/_data/slider-data";
 import SlidesPresentation from "@/components/landing-page/slides-presentation";
-import { dataSlider } from "./_data/slider-data";
+import Accordions from "@/components/accordions";
 
 export default function Home() {
   return (
-    <main className="py-16">
-      <Hero />
-      <SlidesPresentation data={dataSlider} />
+    <main className="py-12">
+      <BlurFade delay={0.25} inView>
+        <Hero />
+      </BlurFade>
 
-      <section className="flex gap-[24px] flex-wrap items-center justify-center my-16">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href={`https://${CONFIG.docsUrl}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Docs
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://portfolio.ferez.cloud"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          See my portfolio →
-        </a>
-      </section>
-      <footer className="pt-8">
-        <p className="text-sm text-gray-500 text-center">
-          &copy; {new Date().getFullYear()} {CONFIG.appName}. All rights
-          reserved.
-          <br />
-          <a
-            className="text-sm text-gray-500 text-center hover:underline hover:underline-offset-4"
-            href="https://www.ferez.cloud"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Go to ferez.cloud →
-          </a>
-        </p>
-        <p className="text-sm text-gray-500 text-center hover:underline hover:underline-offset-4">
-          <a
-            className="text-sm text-gray-500 text-center hover:underline hover:underline-offset-4"
-            href="https://www.ferez.cloud"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Go to ferez.cloud →
-          </a>
-        </p>
-      </footer>
+      <BlurFade delay={0.25} inView>
+        <SlidesPresentation data={dataSlider} />
+      </BlurFade>
+
+      <BlurFade delay={0.25} inView>
+        <div className="flex items-center justify-start gap-16 min-h-[300px] p-16">
+          <div className="flex gap-4 justify-center flex-1">
+            <h1 className="text-4xl font-bold">FAQ</h1>
+          </div>
+          <div className="flex flex-col gap-4 justify-end flex-1">
+            <Accordions />
+          </div>
+        </div>
+      </BlurFade>
+
+      <BlurFade delay={0.25} inView className="my-18">
+        <div className="flex items-center justify-start gap-4">
+          <div className="flex gap-4  flex-1">
+            <Image
+              src="/interior-image.jpg"
+              alt="Hero Image"
+              className="rounded-3xl shadow-lg border-4 border-gray-200 dark:border-gray-800 hover:shadow-2xl transition-shadow ease-in-out"
+              width={300}
+              height={500}
+            />
+          </div>
+          <BlurFade delay={0.25} inView className="my-18">
+            <div className="flex gap-4  flex-1">
+              <Image
+                src="/interior-image.jpg"
+                alt="Hero Image"
+                className="rounded-3xl shadow-lg border-4 border-gray-200 dark:border-gray-800 hover:shadow-2xl transition-shadow ease-in-out"
+                width={300}
+                height={500}
+              />
+            </div>
+          </BlurFade>
+          <BlurFade delay={0.25} inView className="my-18">
+            <div className="flex gap-4  flex-1">
+              <Image
+                src="/interior-image.jpg"
+                alt="Hero Image"
+                className="rounded-3xl shadow-lg border-4 border-gray-200 dark:border-gray-800 hover:shadow-2xl transition-shadow ease-in-out"
+                width={300}
+                height={500}
+              />
+            </div>
+          </BlurFade>
+          <BlurFade delay={0.25} inView className="my-18">
+            <div className="flex gap-4  flex-1">
+              <Image
+                src="/interior-image.jpg"
+                alt="Hero Image"
+                className="rounded-3xl shadow-lg border-4 border-gray-200 dark:border-gray-800 hover:shadow-2xl transition-shadow ease-in-out"
+                width={300}
+                height={500}
+              />
+            </div>
+          </BlurFade>
+        </div>
+      </BlurFade>
+
+      <Footer />
     </main>
   );
 }

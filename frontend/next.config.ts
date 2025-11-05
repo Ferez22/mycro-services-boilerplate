@@ -2,6 +2,14 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "avatar.vercel.sh",
+      },
+    ],
+  },
   async rewrites() {
     // Use API_URL for server-side rewrites
     // In Docker: http://backend:5005 (internal network)

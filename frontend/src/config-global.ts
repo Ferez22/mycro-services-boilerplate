@@ -5,5 +5,5 @@ export const CONFIG = {
   appAuthor: "ferez",
   appAuthorEmail: "ferez@ferez.cloud",
   appAuthorUrl: "https://ferez.cloud",
-  docsUrl: "docs.ferez.cloud",
+  docsUrl: "docs.ferez.cloud/mycroservices/mycro-services-boilerplate",
 };
