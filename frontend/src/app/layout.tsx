@@ -3,6 +3,7 @@ import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { CONFIG } from "@/config-global";
 import { ThemeProvider } from "@/components/context/theme-provider";
+import NavBar from "@/components/navbar/navbar";
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
@@ -27,7 +28,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className={`${jetbrainsMono.variable} antialiased`}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <NavBar />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
