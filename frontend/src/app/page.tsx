@@ -1,7 +1,9 @@
 export default function Home() {
   return (
-    <div className="gap-16 sm:p-2">
-      <div className="p-4">hey</div>
-    </div>
+    <main className="gap-16">
+      <section className="p-4">hey</section>
+
+      <section className="relative w-full rounded-3xl"></section>
+    </main>
   );
 }
