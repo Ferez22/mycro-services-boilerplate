@@ -1,11 +1,14 @@
 import Hero from "@/components/landing-page/hero";
 import Image from "next/image";
 import { CONFIG } from "@/config-global";
+import SlidesPresentation from "@/components/landing-page/slides-presentation";
+import { dataSlider } from "./_data/slider-data";
 
 export default function Home() {
   return (
     <main className="py-16">
       <Hero />
+      <SlidesPresentation data={dataSlider} />
 
       <section className="flex gap-[24px] flex-wrap items-center justify-center my-16">
         <a
