@@ -50,7 +50,7 @@ const NavBar = () => {
     >
       <Container>
         <div
-          className={`flex justify-between items-center p-4 relative z-10 bg-background ${
+          className={`flex justify-between items-center p-4 relative z-10 ${
             isExpanded ? "" : "rounded-b-4xl"
           }`}
         >
