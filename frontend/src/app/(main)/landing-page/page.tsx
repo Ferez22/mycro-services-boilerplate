@@ -1,5 +1,5 @@
 import Hero from "@/components/landing-page/hero";
-import Image from "next/image";
+
 import Footer from "@/components/landing-page/footer";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { dataSlider } from "@/app/_data/slider-data";
