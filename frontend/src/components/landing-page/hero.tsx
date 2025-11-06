@@ -4,6 +4,7 @@ import HeroLinks from "./hero-links";
 import { Testimonials } from "./testimonials";
 import { Highlighter } from "@/components/ui/highlighter";
 import { AnimatedShinyTextComponent } from "../animation-shiny-text";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -30,7 +31,10 @@ const Hero = () => {
         </div>
         <div className="flex items-center justify-center gap-8">
           <HeroLinks />
-          <ShinyButton>Get Started →</ShinyButton>
+          <Link href="/signin-signup">
+            {" "}
+            <ShinyButton>Get Started →</ShinyButton>
+          </Link>
         </div>
       </div>
       <Testimonials />

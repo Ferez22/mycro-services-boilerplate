@@ -1,19 +1,39 @@
-import Image from "next/image";
+import { ArrowLeftCircle } from "lucide-react";
 import Link from "next/link";
+import { ZeCard } from "@/components/molecules/card";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const SignInSignUp = () => {
   return (
-    <div className="flex h-dvh items-start justify-center bg-background pt-12 md:items-center md:pt-0">
-      <Link href="/">
-        <Image src="/ze-logo.png" alt="Logo" width={100} height={100} />
+    <div className="flex flex-col gap-24 h-dvh items-start justify-center bg-background pt-12 md:items-center md:pt-0">
+      <Link href="/" className="absolute top-4 left-4">
+        <ArrowLeftCircle className="h-16 w-16" />
       </Link>
-      <div className="flex w-full max-w-md flex-col gap-12 overflow-hidden rounded-2xl">
-        <div className="flex flex-col items-center justify-center gap-2 px-4 text-center sm:px-16">
-          <h3 className="font-semibold text-xl dark:text-zinc-50">Sign In</h3>
-          <p className="text-gray-500 text-sm dark:text-zinc-400">
-            Use your email and password to sign in
-          </p>
-        </div>
+      <div className="flex w-full max-w-md flex-col items-center justify-center gap-12 overflow-hidden rounded-2xl">
+        <ZeCard
+          title="Login"
+          description="Use your email and password to sign in"
+          content={
+            <form>
+              <div className="grid gap-4">
+                <div className="grid gap-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="name@example.com"
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="password">Password</Label>
+                  <Input id="password" type="password" />
+                </div>
+              </div>
+            </form>
+          }
+        />
       </div>
     </div>
   );
