@@ -60,7 +60,10 @@ const NavBar = () => {
             </Link>
           </div>
           <div className="flex items-center gap-2">
-            <ShinyButton>Sign in</ShinyButton>
+            <Link href="/signin-signup">
+              {" "}
+              <ShinyButton>Sign in</ShinyButton>
+            </Link>
             <ThemeSwitcher />
           </div>
         </div>
